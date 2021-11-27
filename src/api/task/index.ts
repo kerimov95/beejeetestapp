@@ -1,1 +1,1 @@
-export { getTasks, createTask, taskCompleted } from './task'
+export { getTasks, createTask, taskUpdate } from './task'

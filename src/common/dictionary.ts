@@ -17,7 +17,8 @@ const dictionary = {
     createTask: 'Новая задача добавлена',
     successfulLogin: 'Вы авторизованы',
     unsuccessfulLogin: 'Не удалось авторизоваться',
-    emailValid: 'email не валиден'
+    emailValid: 'email не валиден',
+    errorEdit: 'Не удалось сохранить изменения'
 }
 
 export const t = (key: keyof typeof dictionary): string => {

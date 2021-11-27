@@ -1,5 +1,5 @@
 import { authActionsTypes, taskActionsTypes, notificationTypes } from './actionstypes';
-import { getTasks, createTask, taskCompleted } from 'api/task';
+import { getTasks, createTask, taskUpdate } from 'api/task';
 import { push } from 'connected-react-router';
 import { auth } from 'api/auth';
 import { store } from 'store';
@@ -83,9 +83,14 @@ export const taskActions = {
     },
 
     taskUpdateAsync: (id: number, options: { text?: string, status?: TaskStatus }) => async (dispatch: Dispatch<any>) => {
-        taskCompleted(id, options).then(() => {
+        taskUpdate(id, options).then(() => {
             dispatch(taskActions.getTasksAsync());
-            dispatch(notificationActions.addNotificationAsync(t('updateTask'), 'warning'))
+            dispatch(notificationActions.addNotificationAsync(t('updateTask'), 'warning'));
+        }).catch(error => {
+            dispatch(notificationActions.addNotificationAsync(t('errorEdit'), 'negative'));
+            if (error.status === 401) {
+                dispatch(push(routeUrl.loginPage));
+            }
         });
     }
 }

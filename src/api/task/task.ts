@@ -66,9 +66,16 @@ export const createTask = async (email: string, text: string) => {
 
 }
 
-export const taskCompleted = async (id: number, options: { text?: string, status?: TaskStatus }) => {
+export const taskUpdate = async (id: number, options: { text?: string, status?: TaskStatus }) => {
 
     try {
+
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            return Promise.reject({ status: 401 });
+        }
+
         const form = new FormData();
 
         const keys = Object.entries(options);
@@ -76,7 +83,7 @@ export const taskCompleted = async (id: number, options: { text?: string, status
             form.append(key[0], key[1].toString());
         })
 
-        form.append('token', localStorage.getItem('token'))
+        form.append('token', token)
 
         const response = await fetch(baseUrl(`edit/${id}`), {
             method: 'POST',

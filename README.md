@@ -1,4 +1,16 @@
-BeeJeeTest
+# BeeJeeAPP
+Проект тестовое задание от BeeJee
 
-команда для запуска npm run start
-команда для сборки npm run build
+## Проект
+В проекте ипользовались следующие технологии (библиотеки):
+
+- `React`
+- `Redux`
+- `Redux thunk`
+- `Webpack`
+- `Semantic-ui`
+- `TypeScript`
+
+## Запуск и сборка
+- `npm run start` - команда для запуска
+- `npm run build` - команда для сборки
